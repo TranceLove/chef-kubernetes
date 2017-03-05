@@ -1,0 +1,48 @@
+{
+    "name": "node_phase1",
+    "description": "OpsWorks recipe run-list for the slave nodes",
+    "default_attributes": {
+        "kubernetes": {
+            "etcd": {
+                 "network_prefix": "/kube.mockup/network"
+            },
+            "master": {
+                 "ip": "192.168.250.11",
+                 "url": "http://192.168.250.11:8080"
+            },
+            "flannel": {
+                "etcdhost": "http://192.168.250.11:2379"
+            },
+            "kubelet": {
+                "post_opsworks_internal_dns_name": false
+            },
+            "node": {
+                "ip": "0.0.0.0",
+                "broadcast": "192.168.250.255",
+                "labels": {
+                    "aws.opsworks": {
+                        "KubeSystemNode": "true"
+                    }
+                }
+            },
+            "cluster": {
+                "dns": "10.0.0.10",
+                "domain": "kube.cluster.network.local"
+            }
+        }
+    },
+    "run_list": [
+        "recipe[dependencies]",
+        "recipe[kubernetes::vagrant_hosts]",
+        "recipe[kubernetes::bootstrap]",
+        "recipe[kubernetes::docker]",
+        "recipe[kubernetes::add_docker_user]",
+        "recipe[kubernetes::flannel_setup]",
+        "recipe[kubernetes::docker_flannel]",
+        "recipe[kubernetes::base_setup]",
+        "recipe[kubernetes::proxy_setup]",
+        "recipe[kubernetes::kubelet_setup]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

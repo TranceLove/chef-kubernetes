@@ -1,0 +1,25 @@
+[Unit]
+Description=Kubernetes DNS Server
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=network.target
+After=etcd.service
+After=kube-apiserver.service
+
+[Service]
+EnvironmentFile=-/etc/kubernetes/config
+EnvironmentFile=-/etc/kubernetes/kube-dns
+ExecStart=/opt/kubernetes/server/bin/kube-dns \
+	    $KUBEDNS_PORT \
+	    $KUBEDNS_DOMAIN \
+	    $KUBEDNS_HEALTHZ_PORT \
+	    $KUBEDNS_MASTER_URL \
+	    $KUBEDNS_LOG_DIR \
+	    $KUBEDNS_LOG_LEVEL
+User=root
+Restart=on-failure
+Type=simple
+LimitNOFILE=65536
+TimeoutSec=130
+
+[Install]
+WantedBy=multi-user.target

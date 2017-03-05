@@ -1,0 +1,23 @@
+###
+# Kubernetes DNS (kube-dns) config
+
+# Port of DNS
+KUBEDNS_PORT="--dns-port=<%= @listen_port %>"
+
+# domain under which to create names
+KUBEDNS_DOMAIN="--domain=<%= @cluster_domain %>"
+
+# port on which to serve a kube-dns HTTP readiness probe.
+KUBEDNS_HEALTHZ_PORT="--healthz-port=8081"
+
+# URL to reach kubernetes master
+KUBEDNS_MASTER_URL="--kube-master-url=<%= @master_url %>"
+
+# a comma separated list of the federation names and their corresponding domain names to which this cluster belongs. Example: "myfederation1=example.com,myfederation2=example2.com,myfederation3=example.com
+#KUBEDNS_FEDERATIONS="--federations="
+
+# If non-empty, write log files in this directory
+#KUBEDNS_LOG_DIR="--log-dir=<%= @log_dir %>"
+
+# log level for V logs
+KUBEDNS_LOG_LEVEL="--v=0"

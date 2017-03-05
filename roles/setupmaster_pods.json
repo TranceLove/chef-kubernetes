@@ -1,0 +1,29 @@
+{
+    "name": "setupmaster_pods",
+    "description": "OpsWorks recipe run-list for the setup master",
+    "default_attributes": {
+        "kubernetes": {
+            "etcd": {
+                "network_prefix": "/kube.mockup/network",
+                "listen_at": "0.0.0.0"
+            },
+            "cluster": {
+                "dns": "10.0.0.10",
+                "domain": "kube.cluster.network.local."
+            },
+            "flannel": {
+                "etcdhost": "http://localhost:2379"
+            },
+            "apiserver": {
+                "local_master_url": "http://localhost:8080"
+            }
+        }
+    },
+    "run_list": [
+        "recipe[kubernetes::kubedns_pod_setup]",
+        "recipe[kubernetes::heapster_pod_setup]",
+        "recipe[kubernetes::dashboard_pod_setup]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

@@ -1,0 +1,36 @@
+{
+    "name": "setupmaster_setup",
+    "description": "OpsWorks recipe run-list for the setup master",
+    "default_attributes": {
+        "kubernetes": {
+            "etcd": {
+                "network_prefix": "/kube.mockup/network",
+                "listen_at": "0.0.0.0"
+            },
+            "cluster": {
+                "dns": "10.0.0.10",
+                "domain": "kube.cluster.network.local."
+            },
+            "flannel": {
+                "etcdhost": "http://localhost:2379"
+            },
+            "apiserver": {
+                "local_master_url": "http://localhost:8080"
+            }
+        }
+    },
+    "run_list": [
+        "recipe[dependencies]",
+        "recipe[kubernetes::vagrant_hosts]",
+        "recipe[kubernetes::bootstrap]",
+        "recipe[kubernetes::etcd_setup]",
+        "recipe[kubernetes::etcd_create_network]",
+        "recipe[kubernetes::flannel_setup]",
+        "recipe[kubernetes::base_setup]",
+        "recipe[kubernetes::apiserver_setup]",
+        "recipe[kubernetes::controller_manager_setup]",
+        "recipe[kubernetes::scheduler_setup]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

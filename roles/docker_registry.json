@@ -1,0 +1,16 @@
+{
+    "name": "docker_registry",
+    "description": "OpsWorks recipe run-list for the docker registry",
+    "default_attributes": {
+
+    },
+    "run_list": [
+        "recipe[dependencies]",
+        "recipe[kubernetes::vagrant_hosts]",
+        "recipe[kubernetes::bootstrap]",
+        "recipe[kubernetes::docker]",
+        "recipe[kubernetes::docker_registry]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

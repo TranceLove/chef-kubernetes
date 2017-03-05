@@ -1,0 +1,10 @@
+###
+# The following values are used to configure the kubernetes controller-manager
+
+<% if @cloud_provider && @cloud_provider != '' -%>
+# Cloud provider. Leave blank if you are running outside clouds
+KUBE_CLOUD_PROVIDER="--cloud-provider=<%= @cloud_provider %>"
+<% end -%>
+
+# Add your own!
+KUBE_CONTROLLER_MANAGER_ARGS="--service-account-private-key-file=<%= @service_account_key %>"

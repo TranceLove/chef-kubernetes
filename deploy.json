@@ -1,0 +1,14 @@
+{
+    "dependencies": {
+        "debs": {
+            "mc": "latest",
+            "git": "latest",
+            "byobu": "latest",
+            "curl": "latest",
+            "wget": "latest"
+        }
+    },
+    "lsb": {
+        "codename": "xenial"
+    }    
+}

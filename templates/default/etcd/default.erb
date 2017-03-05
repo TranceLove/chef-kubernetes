@@ -1,0 +1,16 @@
+# Set the pper listening address
+# export ETCD_PEER_ADDR=127.0.0.1:7001
+
+# Set other command line options like the name and discovery url
+# from https://discovery.etcd.io/new
+# export ETCD_OPTS="-name=name_here -discovery=https://discovery.etcd.io/token_here"
+
+ETCD_LISTEN_AT="--listen-client-urls=<%= @listen_at %>"
+
+ETCD_PEER_LISTEN_AT="--listen-peer-urls=<%= @listen_peer_at %>"
+
+ETCD_ADVERTISE_CLIENT_URLS="--advertise-client-urls=<%= @advertise_client_urls %>"
+
+ETCD_DATA_DIR="--data-dir=<%= @datadir %>"
+
+ETCD_OPTS=""

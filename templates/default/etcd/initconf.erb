@@ -1,0 +1,21 @@
+[Unit]
+Description=etcd distributed key-value store
+After=local-fs.target network.target
+
+[Service]
+Type=notify
+User=<%= @user %>
+EnvironmentFile=-<%= @envfile %>
+ExecStart=<%= @bindir %>/<%= @progname %> \
+$ETCD_LISTEN_AT \
+$ETCD_PEER_LISTEN_AT \
+$ETCD_ADVERTISE_CLIENT_URLS \
+$ETCD_DATA_DIR \
+$ETCD_OPTS
+
+KillMode=process
+Restart=on-failure
+
+[Install]
+Alias=etcd.service
+WantedBy=multi-user.target

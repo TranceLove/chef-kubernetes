@@ -1,0 +1,24 @@
+{
+    "name": "label_node",
+    "description": "OpsWorks recipe run-list for the slave nodes",
+    "default_attributes": {
+        "kubernetes": {
+            "master": {
+                 "ip": "192.168.250.11",
+                 "url": "http://192.168.250.11:8080"
+            },
+            "node": {
+                "labels": {
+                    "aws.opsworks": {
+                        "KubeSystemNode": "true"
+                    }
+                }
+            }
+        }
+    },
+    "run_list": [
+        "recipe[kubernetes::label_node]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

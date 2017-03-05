@@ -1,0 +1,15 @@
+[Unit]
+Description=flanneld
+After=local-fs.target network.target
+
+[Service]
+Type=notify
+EnvironmentFile=-<%= @envfile %>
+ExecStart=<%= @bindir %>/<%= @progname %> --etcd-endpoints=<%= @etcdhost %> --etcd-prefix=<%= @etcd_prefix %> --iface=<%= @node_ip %>
+KillMode=process
+Restart=on-failure
+User=root
+
+[Install]
+Alias=flanneld.service
+WantedBy=multi-user.target

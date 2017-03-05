@@ -1,0 +1,17 @@
+{
+    "name": "uncordon",
+    "description": "OpsWorks recipe run-list for the slave nodes",
+    "default_attributes": {
+        "kubernetes": {
+            "master": {
+                 "ip": "192.168.250.11",
+                 "url": "http://192.168.250.11:8080"
+            }
+        }
+    },
+    "run_list": [
+        "recipe[kubernetes::uncordon]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

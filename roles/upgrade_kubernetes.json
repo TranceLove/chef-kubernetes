@@ -1,0 +1,14 @@
+{
+    "name": "upgrade_kubernetes",
+    "description": "OpsWorks recipe run-list for upgrading kubernetes",
+    "default_attributes": {
+        "kubernetes": {
+            "version": "1.5.3"
+        }
+    },
+    "run_list": [
+        "recipe[kubernetes::upgrade_kubernetes]"
+    ],
+    "chef_type": "role",
+    "json_class": "Chef::Role"
+}

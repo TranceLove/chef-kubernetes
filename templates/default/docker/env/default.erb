@@ -1,0 +1,10 @@
+# Docker Bridge IP
+DOCKER_BIP="--bip=%FLANNEL_SUBNET%"
+
+# Docker network interface MTU
+DOCKER_MTU="--mtu=%FLANNEL_MTU%"
+
+<% if @insecure_registry && @insecure_registry != '' -%>
+# Additional __insecure__ (Plain HTTP or HTTPS with self-signed certs) registry, comma separated.
+DOCKER_INSECURE_REGISTRY="--insecure-registry=<%= @insecure_registry %>"
+<% end -%>
